@@ -1,0 +1,40 @@
+<!-- components/table.wxml -->
+<scroll-view class="scroll_view_X" scroll-x="true" style="width:{{tableWidth}}rpx">
+  <view class="table">
+    <!-- 表头 -->
+    <view class="table-header" wx:if="{{show_Header}}" style="height:{{headerHeight}}rpx;line-height:{{headerHeight}}">
+      <block wx:for="{{columns}}" wx:for-item="item" wx:key="i">
+        <view class="table-header-item" style="height:{{item.height||headerHeight}}rpx;line-height:{{item.height||headerHeight}}rpx;width:{{item.width}}rpx;text-align:left;background:{{item.background}};border:{{tHeaderBorder}}">{{item.title}}</view>
+      </block>
+    </view>
+    <!-- bindlongpress 长按化成点击 bindtap -->
+    <view class="table-body" bindtouchstart="scrollHandler" style="height:{{tableHeight}}rpx;border:{{tbodyBorder}}">
+      <view class="{{'table-row-singgular'}}"
+        style="background:{{indexRow%2===0?stripe.stripeEven:'stripe.stripeOdd'}};height:{{lineHeight}}rpx;line-height:{{lineHeight}}rpx;border-bottom:{{rowBorder}}" wx:for="{{tableData}}"
+        wx:for-item="itemRow" wx:for-index="indexRow" wx:key="i" bindtap="tableTapHandler"
+        data-mobile="{{itemRow.mobile}}">
+        <view class="table-row-item" wx:for="{{columns}}" wx:key='j' wx:for-item="rowData"
+          style="width:{{indexRow.width}}rpx;height:{{lineHeight}}rpx;text-align:left;line-height:{{lineHeight}}rpx;border-left:{{colmnBorder}}">
+          {{itemRow[rowData.key]===null?'--':itemRow[rowData.key]}}
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view wx:if="{{ false }}" class="maskLayer" bind:click="overlayHideHandler">
+  <view class="overLay-inner" style="top:{{overLayInnertTop*2+'rpx'}}">
+    <view class="overLay-inner-item" catchtap="switchHandler">
+      <text class="overLay-inner-itemText ">切换</text>
+    </view>
+    <view class="overLay-inner-item">
+      <text class="overLay-inner-itemText fodder">重置密码</text>
+    </view>
+    <view class="overLay-inner-item">
+      <text class="overLay-inner-itemText fodder">编辑</text>
+    </view>
+    <view class="overLay-inner-item">
+      <text class="overLay-inner-itemText fodder">冻结</text>
+    </view>
+  </view>
+</view>

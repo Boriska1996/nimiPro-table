@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "table-Com":"../../components/table/table"
+  },
+  "component": true
+}

@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <table-Com tableData="{{data}}" columns="{{coloms}}" show_Header="{{true}}" tableWidth="{{740}}"> </table-Com>
+</view>
